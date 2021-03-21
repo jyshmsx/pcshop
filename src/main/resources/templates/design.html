@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>PC shop</title>
+</head>
+
+<body>
+<h1>Design your PC!</h1>
+
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout"/>
+</form>
+
+<form method="POST" th:action="@{/design}" th:object="${pc}">
+
+        <span class="validationError"
+              th:if="${#fields.hasErrors('accessories')}"
+              th:errors="*{accessories}">accessory Error
+        </span>
+
+    <div class="grid">
+        <div class="accessories-group" id="cpu">
+            <h3>Choose your CPU:</h3>
+            <div th:each="accessory : ${cpu}">
+                <input name="accessory" type="checkbox" th:value="${accessory.id}"/>
+                <span th:text="${accessory.name}">accessory</span><br/>
+            </div>
+        </div>
+
+        <div class="accessory-group" id="mb">
+            <h3>Choose your MB:</h3>
+            <div th:each="accessory : ${mb} ">
+                <input name="accessory" type="checkbox" th:value="${accessory.id}"/>
+                <span th:text="${accessory.name}">accessory</span><br/>
+            </div>
+        </div>
+
+        <div class="accessory-group" id="ram">
+            <h3>Pick your RAM:</h3>
+            <div th:each="accessory : ${ram} ">
+                <input name="accessory" type="checkbox" th:value="${accessory.id}"/>
+                <span th:text="${accessory.name}">accessory</span><br/>
+            </div>
+        </div>
+
+        <div class="accessory-group" id="hdd">
+            <h3>Pick your HDD:</h3>
+            <div th:each="accessory : ${hdd} ">
+                <input name="accessory" type="checkbox" th:value="${accessory.id}"/>
+                <span th:text="${accessory.name}">accessory</span><br/>
+            </div>
+        </div>
+
+        <div class="accessory-group" id="ssd">
+            <h3>Pick your SSD:</h3>
+            <div th:each="accessory : ${ssd} ">
+                <input name="accessory" type="checkbox" th:value="${accessory.id}"/>
+                <span th:text="${accessory.name}">accessory</span><br/>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+
+        <h3>Name your PC creation:</h3>
+        <input type="text" th:field="*{name}" />
+        <br/>
+
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span><br/>
+        <button>Submit your taco</button>
+    </div>
+</form>
+</body>
+</html>

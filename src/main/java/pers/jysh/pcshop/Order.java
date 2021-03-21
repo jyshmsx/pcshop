@@ -35,7 +35,7 @@ public class Order implements Serializable {
     @NotBlank(message = "Not a valid credit card number")
     private String ccNumber;
 
-    @Pattern(regexp = "^(0[1-9]|1[0-2])([\\/])(1-9][0-9])$", message = "Must be formatted MM/YY")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$", message = "Must be formatted MM/YY")
     private String ccExpiration;
 
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
@@ -43,6 +43,9 @@ public class Order implements Serializable {
 
     @ManyToMany(targetEntity = PC.class)
     private List<PC> pc = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
     public void addDesign(PC design){
         this.pc.add(design);

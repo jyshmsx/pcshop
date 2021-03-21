@@ -6,6 +6,12 @@
     <title>PC Shop</title>
 </head>
 <body>
-    <h1>Welcome to ...</h1>
+    <h1>Welcome to PCshop</h1>
+
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+        <input type="submit" value="logout"/>
+    </form>
+
+    <a th:href="@{/design}" id="design">Choose your pc</a>
 </body>
 </html>

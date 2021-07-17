@@ -20,6 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * TODO 应当设置为允许访问注册登录等，并禁止所有页面的访问。
+     * csrf忽略/h2/console
+     * 禁止未登录访问/design, /orders。并允许其他页面的访问
+     * 将登录页面设置为/login
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.headers().frameOptions().sameOrigin()

@@ -30,6 +30,7 @@ public class DesignPCController {
 
     private PCRepository designRepo;
 
+    // XXX 是在变量名上进行自动注入好还是使用构造函数自动装配好？
     @Autowired
     public DesignPCController(AccessoryRepository accessoryRepository,
                               PCRepository designRepo){
@@ -37,6 +38,12 @@ public class DesignPCController {
         this.designRepo = designRepo;
     }
 
+
+    /**
+     * 依据不同类型，将accessory的所有值加入model中
+     * @param model
+     * @return
+     */
     @GetMapping
     public String showSelectPcForm(Model model){
         List<Accessory> accessories = new ArrayList<>();
@@ -50,16 +57,31 @@ public class DesignPCController {
         return "design";
     }
 
+    /**
+     * 将order添加到model上
+     * @return
+     */
     @ModelAttribute(name = "order")
     public Order order(){
         return new Order();
     }
 
+    /**
+     * 将pc添加到model上
+     * @return
+     */
     @ModelAttribute(name = "pc")
     public PC pc(){
         return new PC();
     }
 
+    /**
+     * 将/design页面返回的表单值，保存至数据库，加入至model中，并跳转至/orders/current
+     * @param design
+     * @param errors
+     * @param order
+     * @return
+     */
     @PostMapping
     public String processDesign(@Valid PC design, Errors errors, @ModelAttribute Order order){
         if(errors.hasErrors()){
@@ -71,6 +93,12 @@ public class DesignPCController {
         return "redirect:/orders/current";
     }
 
+    /**
+     * 获取某一个类型的accessory
+     * @param accessory
+     * @param type
+     * @return
+     */
     private List<Accessory> filterByType(List<Accessory> accessory, Type type){
         return accessory.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
     }

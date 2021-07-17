@@ -5,7 +5,7 @@ delete from PC_Order;
 delete from Accessory;
 
 
-// todo
+// TODO 增加更多的内容
 insert into Accessory (id, name, type) values ( 'CoreI76700', 'Intel Core i7-6700', 'CPU');
 insert into Accessory (id, name, type) values ( 'RAM', 'RAM Ryzen 5', 'CPU');
 insert into Accessory (id, name, type) values ( 'EVGA', 'EVGA 2270', 'MB');

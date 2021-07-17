@@ -18,6 +18,11 @@ public class AccessoryByIdConverter implements Converter<String, Accessory> {
         this.accessoryRepo = accessoryRepo;
     }
 
+    /**
+     *
+     * @param id Accessory的id值
+     * @return 该id值对应的accessory
+     */
     @Override
     public Accessory convert(String id){
         Optional<Accessory> optionalAccessory = accessoryRepo.findById(id);

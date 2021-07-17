@@ -17,6 +17,12 @@ public class UserRepositoryUserDetailsService implements UserDetailsService {
         this.userRepo = userRepo;
     }
 
+    /**
+     * 从数据库中寻找当前用户，若无抛出用户未找到异常
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username)throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);

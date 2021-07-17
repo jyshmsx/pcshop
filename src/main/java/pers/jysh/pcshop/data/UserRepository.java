@@ -5,4 +5,5 @@ import pers.jysh.pcshop.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByUsername(String username);
+
 }

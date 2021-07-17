@@ -26,12 +26,25 @@ public class OrderController {
         this.orderRepo = orderRepo;
     }
 
+    /**
+     * 跳转至orderForm页面
+     * @param model
+     * @return
+     */
     @GetMapping("/current")
     public String orderForm(Model model){
         model.addAttribute("order", new Order());
         return "orderForm";
     }
 
+    /**
+     * 获取/orders页面的表单值，将其保存至数据库，并跳转至首页
+     * @param order
+     * @param errors
+     * @param sessionStatus
+     * @param user
+     * @return
+     */
     @PostMapping
     public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus,
                 @AuthenticationPrincipal User user){
